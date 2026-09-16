@@ -1,6 +1,6 @@
 #include <Windows.h>
 
-#if defined(_MSC_VER) && _MSC_VER+0 >= 1400
+#if defined(_MSC_VER) && _MSC_VER+0 >= 1400 && (defined(_M_IX86) || defined(_M_X64))
 #if defined(_MSC_FULL_VER) && _MSC_FULL_VER+0 >= 140050727
 #include <intrin.h>
 #else
