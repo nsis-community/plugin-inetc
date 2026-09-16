@@ -1,0 +1,32 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  plugin:
+    name: INetC / ${{ matrix.toolchain }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { toolchain: msvc, os: windows-latest, release: true }
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: nsis-dev/build-plugin@main
+        with:
+          name: INetC
+          toolchain: ${{ matrix.toolchain }}
+          release: ${{ matrix.release }}
+          sources: Contrib/INetC/*.cpp, Contrib/INetC/*.rc
+          targets: x86-ansi,x86-unicode,amd64-unicode,arm64-unicode
+          crt: none

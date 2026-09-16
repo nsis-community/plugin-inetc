@@ -1,0 +1,4 @@
+Copyright (c) 2004-2015 Takhir Bedertdinov and NSIS contributors
+
+The upstream source states no license. This repository is a build test
+fixture for nsis-dev/build-plugin and grants none either.
